@@ -3,8 +3,33 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Admin\UserController;
+
+Route::get('/useres', [UserController::class, 'index'])->name('useres.index') ;
+
 Route::get('/', function () {
-    return view('welcome');
+
+    $nome = "Joao";
+    $idade = 20;
+    $arr = [1, 2, 3, 4, 5];
+    $nomes = [
+        'Marcos',
+        'Matias',
+        'Pedro',
+        'Afonso',
+        'Martins'
+    ];
+
+    return view('welcome', [
+        'nome'  => $nome,
+        'idade' => $idade,
+        'arr'   => $arr,
+        'nomes' => $nomes
+    ]);
+});
+
+Route::get('/content', function () {
+    return view('content');
 });
 
 Route::get('/dashboard', function () {
