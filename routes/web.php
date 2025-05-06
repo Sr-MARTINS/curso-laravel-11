@@ -32,6 +32,25 @@ Route::get('/content', function () {
     return view('content');
 });
 
+    //Pasando paramentros na rota podemos pegar tal view especifica  passando o determinado id do elemento
+Route::get('/product/{id}', function ($id) {
+    return view('product', ['id' => $id]);
+});
+
+    //passando o {id?} estamos falando q nss parametro vai ter q vim, mas tbm podemos usar o "?", para q ele se torne opcional 
+    //podemos passar um valor por deful como valor do argumento, ou usar o null 
+Route::get('/product_test/{id?}', function ($id = null) {
+    return view('product', ['id' => $id]);
+});
+
+Route::get('/product', function () {
+        //estamos pegando o valor q foi passardo pela 'request' - requisição vindo da ('search') q é onde ta sendo atribuido o valor para a requisição
+    $busca = request('search');
+
+    return view('content', ['busca' => $busca]);
+});
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

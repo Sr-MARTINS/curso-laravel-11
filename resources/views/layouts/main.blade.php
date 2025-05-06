@@ -13,10 +13,19 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="/css/style.css">
-        <script src="/js/script.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
         
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
+        <head>
+            <nav class="nav">
+                <a class="nav-link active" aria-current="page" href="#">Active</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+            </nav>
+        </head>
+
         @yield('content')
         <footer>
             <p>Footres Laravel &copy; 2025.</p>

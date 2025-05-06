@@ -8,3 +8,9 @@
     <a href="/"> Voltar para pg</a>
     
 @endsection
+
+
+@if($busca != '')
+        <!-- Pegando valor passado na variavel -->
+    <p>Buscando por: {{ $busca }}</p>
+@endif
