@@ -11,6 +11,8 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
+        <link rel="stylesheet" href="/css/style.css">
+        <script src="/js/script.js"></script>
         
     </head>
     <body class="font-sans antialiased dark:bg-black dark:text-white/50">
