@@ -1,23 +1,46 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.main')
 
-        <title>Laravel</title>
+@section('title', 'HD Events')
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+@section('content')
 
-        <!-- Styles -->
-         <link rel="stylesheet" href="../css/app.css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
-        
-    </head>
-    <body class="font-sans antialiased dark:bg-black dark:text-white/50">
-            <h1>Pagina inicial</h1>
+    <div class="container" > 
+        <div class="mx-auto mt-5 text-center" style="max-width: 800px;">
+                <!-- div para logo -->
+            <div>
+                <h1>Buscar um evento</h1>
+
+                <form class="d-flex" style="width: 500px; margin: 2rem auto">
+                    <input class="form-control me-2" type="search" placeholder="Procurar Evento" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+
+        <div style="max-width: 800px;">
             
-    </body>
-</html>
+            <div style="margin:3rem 0 1rem 3rem">
+                <h2>Proximos Eventos</h2>
+                <p>Veja os eventos dos proximos dias</p>
+            </div>
+
+            <div style="display:flex; justify-content:center; margin:auto">
+                @foreach($events as $event)
+                    <div class="card col-md-3" style="margin:10px">
+                        <img src="/img/logoCards.jpg" alt="logo-do-card" style="padding: 5px;">
+
+                        <div class="card-body">
+                            <p class="card-date">10/10/2010</p>
+                            <h4 class="card-title"> {{ $event->title }} </h4>
+                            <p class="card-participantes">  X Partifipantes </p>
+
+                            <a href="" class="btn btn-primary">Saber mais</a>
+                        </div>
+                    </div>   
+                @endforeach
+            </div>
+        </div>
+    </div>
+    
+
+@endsection
