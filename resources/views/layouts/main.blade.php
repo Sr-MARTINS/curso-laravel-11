@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="../css/app.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
 
+    <script>
+        setTimeout(function() {
+            document.getElementById('msg').style.display = 'none';
+        }, 5000); 
+    </script>
+
 </head>
 <body>
     <header>
@@ -24,12 +30,18 @@
             <a class="nav-link disabled" aria-disabled="true">Cadastrar</a>
         </nav>
     </header>
-
-    @yield('content')
+    <div class="row">
+        @if(session('msg'))
+            
+            <p id="msg">{{ session('msg' )}}</p>
+        @endif
+            @yield('content')
+    </div>
 
     <footer>
         Footer pg &copy; 2025.
     </footer>
+
 
 
 <script type="módulo" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"> </script> 

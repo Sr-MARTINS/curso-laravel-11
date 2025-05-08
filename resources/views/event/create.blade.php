@@ -4,7 +4,37 @@
 
 @section('content')
 
-    <h1>Criando evento</h1>
+    <div class="container">
+        <div class="text-center mx-auto my-4" style="margin:1.3rem  auto">
+            <h1>Crie o seu evento</h1>
+        </div>
+        <div class="mx-auto p-4 ps-5 rounded" style="max-width: 870px; border: 1px solid rgba(211, 211, 211, 0.4);">
+            <form action="/events" method="post" style="width:670px">
+                @csrf
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Evento:</label>
+                    <input class="form-control" name="title" type="text" placeholder="Evento">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Cidade:</label>
+                    <input class="form-control" name="city" type="text"placeholder="Evento">
+                </div>
+                <div class="mb-3" style="width: 200px;">
+                    <label for="exampleInputEmail1" class="form-label">Status do evento:</label> 
+                    <select name="private" class="form-control">
+                        <option value="0">Publico</option>
+                        <option value="1">Privado</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Descrição:</label>
+                    <textarea class="form-control" name="description" placeholder="O que vai acontecer no evento ?"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Criar Evento</button>
+            </form>
+        </div>
+    </div>
 
 @endsection 
 

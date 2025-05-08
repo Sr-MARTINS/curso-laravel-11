@@ -19,12 +19,12 @@
 
         <div style="max-width: 800px;">
             
-            <div style="margin:3rem 0 1rem 3rem">
+            <div style="margin:3rem 0 1rem 1.4rem">
                 <h2>Proximos Eventos</h2>
                 <p>Veja os eventos dos proximos dias</p>
             </div>
 
-            <div style="display:flex; justify-content:center; margin:auto">
+            <div style="display:flex; margin:auto">
                 @foreach($events as $event)
                     <div class="card col-md-3" style="margin:10px">
                         <img src="/img/logoCards.jpg" alt="logo-do-card" style="padding: 5px;">
