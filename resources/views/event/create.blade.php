@@ -22,6 +22,10 @@
                     <input class="form-control" name="title" type="text" placeholder="Evento">
                 </div>
                 <div class="mb-3">
+                    <label for="exampleInputDate" class="form-label">Data:</label>
+                    <input class="form-control" name="date" type="date" placeholder="Date">
+                </div>
+                <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Cidade:</label>
                     <input class="form-control" name="city" type="text"placeholder="Evento">
                 </div>
@@ -35,6 +39,21 @@
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Descrição:</label>
                     <textarea class="form-control" name="description" placeholder="O que vai acontecer no evento ?"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Adicione itens de infraestrutura:</label>
+                   <div class="form-goup">
+                        <input type="checkbox" name="items[]" value="Cadeiras"> Cadeiras
+                   </div>
+                   <div class="form-goup">
+                        <input type="checkbox" name="items[]" value="Bebidas"> Bebidas
+                   </div>
+                   <div class="form-goup">
+                        <input type="checkbox" name="items[]" value="Open Food"> Open Food
+                   </div>
+                   <div class="form-goup">
+                        <input type="checkbox" name="items[]" value="Brinds"> Brinds
+                   </div>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Criar Evento</button>

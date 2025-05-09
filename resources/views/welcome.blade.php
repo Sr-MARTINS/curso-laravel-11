@@ -34,30 +34,17 @@
                         </div>
 
                         <div class="card-body">
-                            <p class="card-date">10/10/2010</p>
+                            <p class="card-date">{{ date('d/m/Y', strtotime($event->date)) }}</p>
                             <h4 class="card-title">{{ $event->title }}</h4>
                             <p class="card-participantes">X Participantes</p>
 
                             <a href="/events/{{ $event->id}}" class="btn btn-primary">Saber mais</a>
                         </div>
-                    </div>   
+                    </div>
+
                 @endforeach
             </div>
-            <!-- <div style="display:flex; margin:auto">
-                @foreach($events as $event)
-                    <div class="card col-md-3" style="margin:10px">
-                        <img src="/img/events/{{ $event->image }}" alt="logo-do-card" style="padding: 5px; width:150px">
-
-                        <div class="card-body">
-                            <p class="card-date">10/10/2010</p>
-                            <h4 class="card-title"> {{ $event->title }} </h4>
-                            <p class="card-participantes">  X Partifipantes </p>
-
-                            <a href="" class="btn btn-primary">Saber mais</a>
-                        </div>
-                    </div>   
-                @endforeach
-            </div> -->
+            
         </div>
     </div>
     

@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
     use HasFactory;
-    // public function consult() 
-    // {
-    //     $sql = "SELECT   * FROM events";
-        
-    //     return $sql;
-    // }
+    
+    protected $casts = [
+        'items' => 'array'
+    ];
+
+    protected $dates = ['date'];
 }
