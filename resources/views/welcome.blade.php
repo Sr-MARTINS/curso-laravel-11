@@ -17,17 +17,36 @@
             </div>
         </div>
 
-        <div style="max-width: 800px;">
+        <div style="max-width: 1000px; margin: auto">
             
             <div style="margin:3rem 0 1rem 1.4rem">
                 <h2>Proximos Eventos</h2>
                 <p>Veja os eventos dos proximos dias</p>
             </div>
 
-            <div style="display:flex; margin:auto">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+                @foreach($events as $event)
+                    <div class="card" style="width: 27%; height: 21rem; margin-bottom: 20px;">
+
+                        <div class="d-flex align-items-center mx-auto my-1 p-2 rounded border" style="width: 90%; border-color: #ccd6dfa1; border-radius: 2.5%;">
+
+                            <img src="/img/events/{{ $event->image }}" alt="logo-do-card"  style="width: 59%; margin:auto;">
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-date">10/10/2010</p>
+                            <h4 class="card-title">{{ $event->title }}</h4>
+                            <p class="card-participantes">X Participantes</p>
+
+                            <a href="/events/{{ $event->id}}" class="btn btn-primary">Saber mais</a>
+                        </div>
+                    </div>   
+                @endforeach
+            </div>
+            <!-- <div style="display:flex; margin:auto">
                 @foreach($events as $event)
                     <div class="card col-md-3" style="margin:10px">
-                        <img src="/img/logoCards.jpg" alt="logo-do-card" style="padding: 5px;">
+                        <img src="/img/events/{{ $event->image }}" alt="logo-do-card" style="padding: 5px; width:150px">
 
                         <div class="card-body">
                             <p class="card-date">10/10/2010</p>
@@ -38,7 +57,7 @@
                         </div>
                     </div>   
                 @endforeach
-            </div>
+            </div> -->
         </div>
     </div>
     

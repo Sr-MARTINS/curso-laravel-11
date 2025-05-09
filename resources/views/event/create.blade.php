@@ -8,9 +8,15 @@
         <div class="text-center mx-auto my-4" style="margin:1.3rem  auto">
             <h1>Crie o seu evento</h1>
         </div>
-        <div class="mx-auto p-4 ps-5 rounded" style="max-width: 870px; border: 1px solid rgba(211, 211, 211, 0.4);">
-            <form action="/events" method="post" style="width:670px">
+        <div class="mx-auto p-4 ps-5 rounded" style="max-width: 870px; border: 1px solid rgba(211, 211, 211, 0.4);">    
+                                        
+                <!-- Necessario usar o "multipart/form-date" é nescesario para enviar arquivo pelo formulario -->
+            <form action="/events" method="post" enctype="multipart/form-data" style="width:670px">
                 @csrf
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Image do Evento:</label>
+                    <input class="form-control-file" name="image" type="file">
+                </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Evento:</label>
                     <input class="form-control" name="title" type="text" placeholder="Evento">
