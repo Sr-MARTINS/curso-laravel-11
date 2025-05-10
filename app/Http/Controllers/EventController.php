@@ -22,7 +22,7 @@ class EventController extends Controller
         //passaremso o metodo static 'all( )' onde com ele conseguiremos pegar todos eventos do banco
         $events = Event::all();
         }
-        
+
         return view('welcome', ['events' => $events, 'search' => $search]);
     }
 
@@ -70,6 +70,9 @@ class EventController extends Controller
                 // Salvaremos  o nome da img no atributo "image" do modelo $event, para q ele possa ser armazenado no bando de dados
             $event->image = $imageName;
         }
+
+        $user = auth()->user();
+        $event->user_id = $user->id;
 
         $event->save();
 
