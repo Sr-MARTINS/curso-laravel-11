@@ -10,8 +10,8 @@
             <div>
                 <h1>Buscar um evento</h1>
 
-                <form class="d-flex" style="width: 500px; margin: 2rem auto">
-                    <input class="form-control me-2" type="search" placeholder="Procurar Evento" aria-label="Search">
+                <form class="d-flex" action="/" style="width: 500px; margin: 2rem auto">
+                    <input class="form-control me-2" type="search" name="search" placeholder="Procurar Evento" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
@@ -20,8 +20,13 @@
         <div style="max-width: 1000px; margin: auto">
             
             <div style="margin:3rem 0 1rem 1.4rem">
-                <h2>Proximos Eventos</h2>
-                <p>Veja os eventos dos proximos dias</p>
+                @if($search)
+                    <h2>Buscando por: {{ $search }} </h2>
+                    <a href="/">Voltar para lista de envento</a>
+                @else
+                    <h2>Proximos Eventos</h2>
+                    <p>Veja os eventos dos proximos dias</p>
+                @endif    
             </div>
 
             <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
@@ -43,6 +48,14 @@
                     </div>
 
                 @endforeach
+                @if(count($events) == 0 && $search)
+                    <p>Nao foi possivel encontrar nenhum evento com: " {{ $search }} " </p>
+                    <a href="/"> Ver todos</a>
+                
+                @elseif(count($events) == 0)
+                    <p>Nao a evento desponivel</p>
+                @endif
+
             </div>
             
         </div>

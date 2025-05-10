@@ -9,11 +9,21 @@ class EventController extends Controller
 {
     public function index()
     {
+        $search = request('search');
+
+        if($search) {
+
+            $events = Event::where([
+                ['title', 'like', '%'.$search.'%']
+            ])->get();
+        } else {
+
         //estamos passando a Class 'EventModel' q é a class q guarda nossas operações 
         //passaremso o metodo static 'all( )' onde com ele conseguiremos pegar todos eventos do banco
         $events = Event::all();
-
-        return view('welcome', ['events' => $events]);
+        }
+        
+        return view('welcome', ['events' => $events, 'search' => $search]);
     }
 
     public function create()

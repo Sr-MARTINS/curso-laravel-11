@@ -27,8 +27,22 @@
         <nav class="nav">
             <a class="nav-link active" aria-current="page" href="/">Eventos</a>
             <a class="nav-link" href="/events/create">Criar Eventos</a>
-            <a class="nav-link" href="#">Entrar</a>
-            <a class="nav-link disabled" aria-disabled="true">Cadastrar</a>
+
+            @auth
+                <a class="nav-link" href="/dashboard">Meus eventos</a>
+
+                <form action="/logout" method="post">
+                    @csrf
+                        <a href="/logout" class="nav-link" onclick="event.preventDefault();
+                        this.closest('form').submit();"> 
+                            Sair
+                        </a>
+                </form>
+            @endauth
+            @guest
+                <a class="nav-link" href="/login">Entrar</a>
+                <a class="nav-link"  href="/register">Cadastrar</a>
+            @endguest
         </nav>
     </header>
     <div class="row" style="width:90%; margin:auto">
