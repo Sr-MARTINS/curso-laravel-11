@@ -65,8 +65,14 @@ class User extends Authenticatable
         ];
     }
 
+
+        #Para o nosso Model de Usuario, vamos criar o a funcçao 'events()' funcao essa q vai atrelar muitos eventos; por isso o nome é no plural
     public function events()
     {
+        #E nessa funçao passaremos o "hasMany()" q quer nos dizer q teremos muitos eventos 
+        #   e passaremos como argumento do metodo o caminho do metodo dos nossos eventos 
+
+        # E DESSA MANEIRA ATRELAMOS UM AO OUTRO
         return $this->hasMany('App\Models\Event');
     }
 }

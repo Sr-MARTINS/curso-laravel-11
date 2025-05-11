@@ -71,8 +71,17 @@ class EventController extends Controller
             $event->image = $imageName;
         }
 
-        $user = auth()->user();
+
+        #Aq no controller, faremos o acesso ao usuario apartir do metodo "auth()" q nos da acesso ao user(), q é o usuario logado
+        $user = auth()->user(); 
+
+        
+        # E a passaremos q o nossa class de envent vai estanciar o 'user_id' e dessa forma vamos preencher o campo de id de usuario
+
+        # SO Q DESSA FORMA CONSEGUIREMOS TER ACESSEÇO MSM DESLOGADO E NAO É ISSO Q QUEREMOS 
+        #   ENTT NO ARQUIVO DE ROUTS TEREMOS Q FAZER UMA MODIFICAÇÃO
         $event->user_id = $user->id;
+
 
         $event->save();
 
