@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -92,6 +93,13 @@ class EventController extends Controller
     {
         $event = Event::findOrfail($id);
 
-        return view('event/show', ['event' => $event]);
+            //usando do Model User o metodo "where" metodo esse q filtra nossas consultas;
+            //  dai passamos o 'id' como primeiro argumento, logo apos passamnos o 
+            //  "$event->user_id" pois queremos q o id da pesquisa seja o msm id do usuario
+
+            // dai passamos o filter() pois ele nos retorna o primeiro item, logo apos usaremso o toArray() para transformarmos nossa item em um array
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
+
+        return view('events.show', ['event' => $event, 'eventOwnwe' => $eventOwner]);
     }
 }

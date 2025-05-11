@@ -23,7 +23,7 @@
                         {{ $event->status }} </p>
                     <p style="margin-bottom: -1px;"><span style="font-weight: 500;">
                         N Participantes:</span> X </p>
-                    <p><span style="font-weight: 500;">Dono do Evento:</span>
+                    <p><span style="font-weight: 500;">Dono do Evento: {{ $eventOwner['name']}}</span>
                          X </p>
         
                     <div style="margin-bottom: 9px;">
