@@ -28,7 +28,7 @@
                             <td><a href="/events/{{ $event->id }}"> {{ $event->title }} </a> </td>
                             <td>0</td>
                             <td>
-                                <a href="">Editar</a> /
+                                <a href="/events/edit/{{ $event->id }}">Editar</a> /
 
                                 <!-- Passando como um formulario para enviar pela rota a chamada do nosso metodo de deletar
                                  Adetiomos "action="/events/{{ $event->id }}"" Pois estamos pegando o id para mandar para o arquivo de Route-->

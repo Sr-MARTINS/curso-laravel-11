@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use PhpParser\Node\Expr\FuncCall;
 
 class EventController extends Controller
 {
@@ -123,5 +124,39 @@ class EventController extends Controller
 
             //Apos deletarmos redirecionaremos para pagina dos nss eventos dando uma msg de sucesso
         return redirect('/dashboard')->with('msg', 'Evento excluido com sucesso!');
+    }
+
+
+        //Metodo para buscarmos o usuario pelo id e direcioanermos para a pagina de atualização
+    public function edit($id)
+    {
+            //Metodo q pega o item pelo id
+        $event = Event::findOrfail($id);
+            //Direcionando para a pagina q var ter as informações e poderemos editar
+        return view('events.edit', ['event' => $event]);
+    }
+
+        //Metodo q vai atualizar o os daddos
+    public function update(Request $request)
+    {
+        $data = $request->all();
+
+            // Image Upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+                    
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime("now")) . "." .$extension;
+
+            $request->image->move(public_path('img/events'), $imageName);
+
+            $data['image'] = $imageName;
+        }
+
+        Event::findOrfail($request->id)->update($data);
+
+        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso');
     }
 }
