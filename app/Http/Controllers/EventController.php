@@ -29,7 +29,7 @@ class EventController extends Controller
 
     public function create()
     {
-        return view('event.create');
+        return view('events.create');
     }
 
     public function store(Request $request)
@@ -97,9 +97,21 @@ class EventController extends Controller
             //  dai passamos o 'id' como primeiro argumento, logo apos passamnos o 
             //  "$event->user_id" pois queremos q o id da pesquisa seja o msm id do usuario
 
-            // dai passamos o filter() pois ele nos retorna o primeiro item, logo apos usaremso o toArray() para transformarmos nossa item em um array
+            // dai passamos o filter() pois ele nos retorna o primeiro item, logo apos usaremso o toArray() para transformarmos nossa item em um
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
         return view('events.show', ['event' => $event, 'eventOwnwe' => $eventOwner]);
+    }
+
+    public function dashboard()
+    {
+        // Nesse metodo vamos pegar o usuario logado 
+        $user = auth()->user();
+
+        // Dai associoaremso o usuario ao evento 
+        $event  = $user->events;
+
+            //Logo apos direcionaremo ele para sua pagina de envonts(area adminstrativa)
+        return view('events.dashboard', ['event' => $event]);
     }
 }

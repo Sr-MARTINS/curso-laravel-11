@@ -12,13 +12,6 @@ Route::get('/events/create', [EventController::class, 'create'])->middleware('au
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/{id}', [EventController::class, 'show']);
 
-
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+    //criamos uma rota para q o usuario logado tenha acesseço ao seus eventos
+    // e ultilizando o "middleware(auth)" fazemos q nosso usuario so vai acessar se tiver logado
+Route::get('dashboard', [EventController::class, 'dashboard'])->middleware('auth');
