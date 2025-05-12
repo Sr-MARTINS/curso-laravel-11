@@ -12,6 +12,10 @@ Route::get('/events/create', [EventController::class, 'create'])->middleware('au
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/{id}', [EventController::class, 'show']);
 
+    //Passamos pelo http o 'delete' pois seguimos o padra de aplicção, e de fato esse metodo segue sua funcionalida
+    //Passmos q noss route espera um "id", pois com ele coseguiremos buscar o item
+Route::delete('/events/{id}', [EventController::class, 'destroy']);
+
     //criamos uma rota para q o usuario logado tenha acesseço ao seus eventos
     // e ultilizando o "middleware(auth)" fazemos q nosso usuario so vai acessar se tiver logado
 Route::get('dashboard', [EventController::class, 'dashboard'])->middleware('auth');

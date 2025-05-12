@@ -114,4 +114,14 @@ class EventController extends Controller
             //Logo apos direcionaremo ele para sua pagina de envonts(area adminstrativa)
         return view('events.dashboard', ['event' => $event]);
     }
+
+    public function destroy($id)
+    {
+            //Medoto esta para fazer o delete d eventos
+            //  passamos o fildOrfail($id) pois queremos pegar no banco o item com o determinado id, apos isso, logo ao encontrar, deletaremos ele
+        Event::findOrfail($id)->delete();
+
+            //Apos deletarmos redirecionaremos para pagina dos nss eventos dando uma msg de sucesso
+        return redirect('/dashboard')->with('msg', 'Evento excluido com sucesso!');
+    }
 }
