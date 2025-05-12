@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use PhpParser\Node\Expr\FuncCall;
 
 class User extends Authenticatable
 {
@@ -74,5 +75,12 @@ class User extends Authenticatable
 
         # E DESSA MANEIRA ATRELAMOS UM AO OUTRO
         return $this->hasMany('App\Models\Event');
+    }
+
+        //Nome passado apenas para nao sobrescrever q estamos tratando de varios eventos
+    public function eventsAsParticipant()
+    {
+            //Passamdo q q nosso usuario pode ter muitos eventos
+        return $this->belongsToMany('App\Models\Event');
     }
 }

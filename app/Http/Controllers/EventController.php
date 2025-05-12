@@ -7,6 +7,8 @@ use App\Models\Event;
 use App\Models\User;
 use PhpParser\Node\Expr\FuncCall;
 
+use Illuminate\Support\Facades\Auth;
+
 class EventController extends Controller
 {
     public function index()
@@ -75,8 +77,8 @@ class EventController extends Controller
 
 
         #Aq no controller, faremos o acesso ao usuario apartir do metodo "auth()" q nos da acesso ao user(), q é o usuario logado
-        $user = auth()->user(); 
-
+        // $user = auth()->user(); 
+        $user = Auth::user();
         
         # E a passaremos q o nossa class de envent vai estanciar o 'user_id' e dessa forma vamos preencher o campo de id de usuario
 
@@ -101,19 +103,23 @@ class EventController extends Controller
             // dai passamos o filter() pois ele nos retorna o primeiro item, logo apos usaremso o toArray() para transformarmos nossa item em um
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        return view('events.show', ['event' => $event, 'eventOwnwe' => $eventOwner]);
+        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
     }
 
     public function dashboard()
     {
         // Nesse metodo vamos pegar o usuario logado 
-        $user = auth()->user();
+        // $user = auth()->user();
+        $user = Auth::user();
 
         // Dai associoaremso o usuario ao evento 
         $event  = $user->events;
 
+            //Estamos armazenando todos os usarios cim seus eventos
+        $eventsAsParticipant = $user->eventsAsParticipant;
+
             //Logo apos direcionaremo ele para sua pagina de envonts(area adminstrativa)
-        return view('events.dashboard', ['event' => $event]);
+        return view('events.dashboard', ['event' => $event, 'eventsAsParticipant' => $eventsAsParticipant]);
     }
 
     public function destroy($id)
@@ -130,8 +136,17 @@ class EventController extends Controller
         //Metodo para buscarmos o usuario pelo id e direcioanermos para a pagina de atualização
     public function edit($id)
     {
+         //Pedgando usuario logado
+        $user = Auth::user();
+
             //Metodo q pega o item pelo id
         $event = Event::findOrfail($id);
+
+            //Condição passado para q so podesse editar quem for dono do evento
+        if($user->id != $event->user->id) {
+            return redirect('/dashboard');
+        }
+
             //Direcionando para a pagina q var ter as informações e poderemos editar
         return view('events.edit', ['event' => $event]);
     }
@@ -158,5 +173,19 @@ class EventController extends Controller
         Event::findOrfail($request->id)->update($data);
 
         return redirect('/dashboard')->with('msg', 'Evento editado com sucesso');
+    }
+
+    public function joinEvent($id)
+    {
+        //verificando o usuario logado
+        $user = Auth::user();
+
+            //e passando o "attach($id)" entrelaçaremos o id do evento ao id do isuario
+        $user->eventsAsParticipant()->attach($id);
+
+            //buscaremos o usuario
+        $event = Event::findOrfail($id);
+
+        return redirect('/dashboard')->with('msg', 'Sua presença esta confirmada no evento ' . $event->title);
     }
 }

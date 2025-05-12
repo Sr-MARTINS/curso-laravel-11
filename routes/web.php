@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Models\Event;
 
 Route::get('/', [EventController::class, 'index']);
 
@@ -29,3 +30,5 @@ Route::put('/events/update/{id}', [EventController::class, 'update'])->middlewar
     //criamos uma rota para q o usuario logado tenha acesseço ao seus eventos
     // e ultilizando o "middleware(auth)" fazemos q nosso usuario so vai acessar se tiver logado
 Route::get('dashboard', [EventController::class, 'dashboard'])->middleware('auth');
+
+Route::post('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');

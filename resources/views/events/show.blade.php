@@ -24,7 +24,7 @@
                     <p style="margin-bottom: -1px;"><span style="font-weight: 500;">
                         N Participantes:</span> X </p>
                     <p><span style="font-weight: 500;">Dono do Evento: {{ $eventOwner['name']}}</span>
-                         X </p>
+                          </p>
         
                     <div style="margin-bottom: 9px;">
                         <h5>O evento conta com:</h5>
@@ -34,7 +34,16 @@
                             @endforeach
                     </div>
             
-                <a href="" class="btn btn-primary">Confirmar Presença</a>
+                <form action="/events/join/{{ $event->id }}" method="POST">        
+                    @csrf
+                    <a href="/events/join/{{ $event->id}}" 
+                        class="btn btn-primary"
+                        onclick="event.preventDefault();
+                        this.closest('form').submit()">
+                        
+                        Confirmar Presença
+                    </a>
+                </form>
             
             </div>
 

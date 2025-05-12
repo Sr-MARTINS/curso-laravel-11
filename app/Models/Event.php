@@ -26,4 +26,11 @@ class Event extends Model
         //   e dentro do "bilongsTo(''App\Models\User')" passamos o 'App\Models\User' nosso model de usuario, pois queremos q o evento perteça a um usuario q esta dentro d pasta Model q fica dentro do App
         return $this->belongsTo('App\Models\User');
     } 
+
+
+    public function users()
+    {
+            //Estamos passando com o "bilongsToMany()" q nosso evento vai te varios usuarios 
+        return $this->belongsToMany('App\Models\User');
+    }
 }
