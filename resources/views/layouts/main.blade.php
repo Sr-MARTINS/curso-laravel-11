@@ -53,7 +53,7 @@
             @yield('content')
     </div>
 
-    <footer>
+    <footer style="margin: 2rem auto .5rem auto; display:flex; align-items:center;justify-content: center;">
         Footer pg &copy; 2025.
     </footer>
 

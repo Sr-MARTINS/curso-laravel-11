@@ -29,11 +29,11 @@
                 @endif    
             </div>
 
-            <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly;">
+            <div class="d-flex flex-wrap justify-content-evenly">
                 @foreach($events as $event)
-                    <div class="card" style="width: 27%; height: 21rem; margin-bottom: 20px;">
+                    <div class="card mb-3" style="width: 27%; height: 21rem;">
 
-                        <div class="d-flex align-items-center mx-auto my-1 p-2 rounded border" style="width: 90%; border-color: #ccd6dfa1; border-radius: 2.5%;">
+                        <div class="d-flex align-items-center mx-auto my-1 p-2 rounded border" style="width: 211px; height:131px ; border-color: #ccd6dfa1; border-radius: 2.5%;">
 
                             <img src="/img/events/{{ $event->image }}" alt="logo-do-card"  style="width: 59%; margin:auto;">
                         </div>
