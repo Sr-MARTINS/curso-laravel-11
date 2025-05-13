@@ -17,34 +17,37 @@
                 <h1 style="text-align: center;"> {{ $event->title }} </h1>
                 <hr>
         
-                    <p style="margin-bottom: -1px;"><span style="font-weight: 500;">Local:</span>
-                        {{ $event->city }} </p>
-                    <p style="margin-bottom: -1px;"><span style="font-weight: 500;">Status:</span>
-                        {{ $event->status }} </p>
-                    <p style="margin-bottom: -1px;"><span style="font-weight: 500;">
-                        N Participantes:</span> X </p>
-                    <p><span style="font-weight: 500;">Dono do Evento: {{ $eventOwner['name']}}</span>
-                          </p>
-        
-                    <div style="margin-bottom: 9px;">
-                        <h5>O evento conta com:</h5>
-                            @foreach($event->items as $item)
-                                <p style="margin-bottom: -1px;"> <i class="bi bi-check-lg"></i>
-                                {{ $item }} </p>
-                            @endforeach
-                    </div>
+                <p style="margin-bottom: -1px;"><span style="font-weight: 500;">Local:</span>
+                    {{ $event->city }} </p>
+                <p style="margin-bottom: -1px;"><span style="font-weight: 500;">Status:</span>
+                    {{ $event->status }} </p>
+                <p style="margin-bottom: -1px;"><span style="font-weight: 500;">
+                    N Participantes:</span> X </p>
+                <p><span style="font-weight: 500;">Dono do Evento: {{ $eventOwner['name']}}</span>
+                        </p>
+    
+                <div style="margin-bottom: 9px;">
+                    <h5>O evento conta com:</h5>
+                        @foreach($event->items as $item)
+                            <p style="margin-bottom: -1px;"> <i class="bi bi-check-lg"></i>
+                            {{ $item }} </p>
+                        @endforeach
+                </div>
             
-                <form action="/events/join/{{ $event->id }}" method="POST">        
-                    @csrf
-                    <a href="/events/join/{{ $event->id}}" 
-                        class="btn btn-primary"
-                        onclick="event.preventDefault();
-                        this.closest('form').submit()">
-                        
-                        Confirmar Presença
-                    </a>
-                </form>
-            
+                @if(!$hasUserJoined)
+                    <form action="/events/join/{{ $event->id }}" method="POST">        
+                        @csrf
+                        <a href="/events/join/{{ $event->id}}" 
+                            class="btn btn-primary"
+                            onclick="event.preventDefault();
+                            this.closest('form').submit()">
+                            
+                            Confirmar Presença
+                        </a>
+                    </form>
+                @else
+                    <p style="border:1px solid black">Voçê esta participando deste evento</p>
+                @endif
             </div>
 
             <div class="col-md-12">

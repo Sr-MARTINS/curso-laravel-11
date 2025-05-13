@@ -96,6 +96,20 @@ class EventController extends Controller
     {
         $event = Event::findOrfail($id);
 
+        $user = Auth::user();
+        $hasUserJoined = false;
+
+        if($user) {
+
+            $userEvents = $user->eventsAsParticipant->toArray();
+
+            foreach($userEvents as $userEvent) {
+                if($userEvent['id'] == $id) {
+                    $hasUserJoined = true;
+                }
+            }
+        }
+
             //usando do Model User o metodo "where" metodo esse q filtra nossas consultas;
             //  dai passamos o 'id' como primeiro argumento, logo apos passamnos o 
             //  "$event->user_id" pois queremos q o id da pesquisa seja o msm id do usuario
@@ -103,7 +117,7 @@ class EventController extends Controller
             // dai passamos o filter() pois ele nos retorna o primeiro item, logo apos usaremso o toArray() para transformarmos nossa item em um
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
+        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner, 'hasUserJoined' => $hasUserJoined]);
     }
 
     public function dashboard()
@@ -187,5 +201,17 @@ class EventController extends Controller
         $event = Event::findOrfail($id);
 
         return redirect('/dashboard')->with('msg', 'Sua presença esta confirmada no evento ' . $event->title);
+    }
+
+    public function leaveEvent($id)
+    {
+        $user = Auth::user();
+
+            //Passaremos o "detach()" pois queremos remover a ligação de usuario e evento
+        $user->eventsAsParticipant()->detach($id);
+
+        $event = Event::findOrfail($id);
+
+        return redirect('/dashboard')->with('msg', 'Ligação com evento removida '.$event->title);
     }
 }
